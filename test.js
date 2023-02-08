@@ -1,4 +1,5 @@
 
+
 var S = {
     init: function () {
         var action = window.location.href,
@@ -10,13 +11,17 @@ var S = {
         if (i !== -1) {
             S.UI.simulate(decodeURI(action).substring(i + 3));
         } else {
-            S.UI.simulate(' Shape|Shifter|Type|to start|#rectangle|#countdown 3||');
+            S.UI.simulate(' THIS IS|WHAT|YOU CAN|MAKE|WITH|HTML|CSS|AND|JAVASCRIPT|#countdown 5 |#start|| ');
+
         }
+
 
         S.Drawing.loop(function () {
             S.Shape.render();
         });
+
     }
+
 };
 
 
@@ -132,6 +137,8 @@ S.UI = (function () {
         destroy && S.Shape.switchShape(S.ShapeBuilder.letter(''));
     }
 
+
+
     function performAction(value) {
         var action,
             value,
@@ -142,10 +149,15 @@ S.UI = (function () {
         input.value = '';
         checkInputWidth();
 
+
+
         timedAction(function (index) {
             current = sequence.shift();
             action = getAction(current);
             value = getValue(current);
+
+
+            let signal = false;
 
             switch (action) {
                 case 'countdown':
@@ -161,9 +173,12 @@ S.UI = (function () {
                             }
                         } else {
                             S.Shape.switchShape(S.ShapeBuilder.letter(index), true);
+
                         }
                     }, 1000, value, true);
+
                     break;
+
 
                 case 'rectangle':
                     value = value && value.split('x');
@@ -172,6 +187,12 @@ S.UI = (function () {
                     S.Shape.switchShape(S.ShapeBuilder.rectangle(Math.min(maxShapeSize, parseInt(value[0])), Math.min(maxShapeSize, parseInt(value[1]))));
                     break;
 
+                case 'start':
+                    function Start() {
+                        window.location.assign("https://ludico.netlify.app");
+                    }
+                    Start()
+                    break;
                 case 'circle':
                     value = parseInt(value) || maxShapeSize;
                     value = Math.min(value, maxShapeSize);
@@ -198,7 +219,13 @@ S.UI = (function () {
                     S.Shape.switchShape(S.ShapeBuilder.letter(current[0] === cmd ? 'What?' : current));
             }
         }, 2000, sequence.length);
+
     }
+
+
+
+
+
 
     function checkInputWidth(e) {
         if (input.value.length > 18) {
