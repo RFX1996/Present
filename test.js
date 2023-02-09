@@ -11,7 +11,7 @@ var S = {
         if (i !== -1) {
             S.UI.simulate(decodeURI(action).substring(i + 3));
         } else {
-            S.UI.simulate(' THIS IS|WHAT|YOU CAN|MAKE|WITH|HTML|CSS|AND|JAVASCRIPT|#countdown 5 |#start|| ');
+            S.UI.simulate(' THIS IS|WHAT|YOU CAN|MAKE|WITH|HTML|CSS|AND |JAVASCRIPT |❤️❤️❤️|#countdown 5 |#start|| ');
 
         }
 
